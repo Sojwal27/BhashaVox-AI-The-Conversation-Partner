@@ -85,8 +85,8 @@ bhashavox-ai/
 ### 2️⃣ Install Ollama & LLM
 
 ```bash
-ollama pull phi3:mini
-ollama run phi3:mini
+ollama pull qwen2.5:0.5b
+ollama run qwen2.5:0.5b
 ```
 
 ### 3️⃣ Install Python Dependencies
@@ -106,12 +106,16 @@ def bhashavox_llm(prompt):
     response = requests.post(
         "http://localhost:11434/api/generate",
         json={
-            "model": "phi3:mini",
+            "model": "qwen2.5:0.5b",
             "prompt": prompt,
             "stream": False
         }
     )
-    return response.json()["response"]
+        response.raise_for_status()  # HTTP error check
+        return response.json().get("response", "")
+
+    except requests.exceptions.RequestException as e:
+        return f"Error connecting to LLM: {e}"
 ```
 
 ---
@@ -144,7 +148,7 @@ Rules:
 
 ## 🧠 Model Choice Rationale
 
-* **Phi-3 Mini** is optimized for low-resource systems (≈4 GB RAM)
+* **Qwen2.5 (0.5B)** is optimized for low-resource systems (≈4 GB RAM)
 * Provides strong English understanding and grammar correction
 * Fast inference on CPU-only machines
 * Ideal for local, privacy-friendly AI applications
