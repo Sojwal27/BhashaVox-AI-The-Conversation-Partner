@@ -59,12 +59,17 @@
 
 ```
 bhashavox-ai/
-│── ai_engine.py        # Core LLM interaction logic
-│── main.py             # API / app entry point
-│── test_chat.py        # CLI-based testing
-│── .env                # Environment variables
-│── requirements.txt    # Dependencies
-│── README.md           # Project documentation
+│
+├── venv/                 # Virtual environment
+├── ai_engine.py          # LLM + Ollama interaction
+├── prompts.py            # Prompt definitions
+├── memory.py             # Conversation memory
+├── analytics.py          # Mistake tracking
+├── main.py               # FastAPI backend
+├── test_chat.py          # CLI testing
+├── requirements.txt
+├── .env
+└── README.md
 ```
 
 ---
